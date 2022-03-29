@@ -1,0 +1,15 @@
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\bin\Debug\net6.0\CalculatorTask.exe
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\bin\Debug\net6.0\CalculatorTask.deps.json
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\bin\Debug\net6.0\CalculatorTask.runtimeconfig.json
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\bin\Debug\net6.0\CalculatorTask.dll
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\bin\Debug\net6.0\CalculatorTask.pdb
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.csproj.AssemblyReference.cache
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.AssemblyInfoInputs.cache
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.AssemblyInfo.cs
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.csproj.CoreCompileInputs.cache
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.dll
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\refint\CalculatorTask.dll
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.pdb
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.genruntimeconfig.cache
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\ref\CalculatorTask.dll
