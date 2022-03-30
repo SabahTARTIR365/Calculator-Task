@@ -20,31 +20,30 @@
             this.productPrice = productPrice;
         }
 
-        internal void addPriceDiscount()
+        internal double addPriceDiscount()
         {
             if (this != null)
             {
-                Console.WriteLine($"Product price reported as ${Math.Round(this.productPrice, 2)} before discount");
-                this.productDiscountAmount =  (this.productPrice * productDiscountPercentage);
-                this.productPrice = this.productPrice - this.productDiscountAmount;
-                Console.WriteLine($"and ${ Math.Round(this.productPrice, 2)} after { this.productDiscountPercentage * 100}% discount.");
+                this.productDiscountAmount =  (this.productPrice * productDiscountPercentage);    
             }
+            return this.productDiscountAmount;
         }
 
         internal void getFinalPrice()
         {
-            this.addPriceTax();
-            this.addPriceDiscount();
+            Console.WriteLine($"Product price reported as ${Math.Round(this.productPrice, 2)} before discount and tax");
+            this.productPrice = this.productPrice - addPriceDiscount()+ addPriceTax();
+            Console.WriteLine($"and ${ Math.Round(this.productPrice, 2)} after { productTaxPercentage * 100}% tax and discount.");
+
         }
 
-        internal void addPriceTax()
+        internal double addPriceTax()
         {
-           if (this  != null) {
-                Console.WriteLine($"Product price reported as ${Math.Round(this.productPrice, 2)} before tax");
+           if (this  != null) 
+            {
                this.productTaxAmount = this.productPrice * productTaxPercentage;
-                this.productPrice = this.productPrice + this.productTaxAmount;
-                Console.WriteLine($"and ${ Math.Round(this.productPrice, 2)} after { productTaxPercentage*100}% tax.");
-        }
+            }
+           return productTaxAmount;
         }
     }
 }
