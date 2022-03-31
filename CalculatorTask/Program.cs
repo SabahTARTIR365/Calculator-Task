@@ -9,6 +9,7 @@ namespace CalculatorTask
             product.priceReport();
 
             VipProduct productt = new VipProduct("The Little Princes Tia", 10345, 22.25);
+            productt.priceReport(); 
          
 
         }

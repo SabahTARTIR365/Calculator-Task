@@ -11,10 +11,12 @@
         private double productTaxAmount;
 
         public double ProductPrice { get => productPrice; set => productPrice = value; }
+        public double ProductTaxPercentage { get => productTaxPercentage; set => productTaxPercentage = value; }
+        public double ProductDiscountAmount { get => productDiscountAmount; set => productDiscountAmount = value; }
+        public double ProductDiscountPercentage { get => productDiscountPercentage; set => productDiscountPercentage = value; }
 
         internal bool notOfferDiscount()
         {
-             
            return productDiscountPercentage == 0.0;
         }
 
@@ -55,12 +57,9 @@
             return this.productDiscountAmount;
         }
 
-        internal void getFinalPrice()
-        {
-            
+         protected void getFinalPrice()
+        { 
             this.productPrice = this.productPrice - addPriceDiscount()+ addPriceTax();
-          
-
         }
 
         internal double addPriceTax()

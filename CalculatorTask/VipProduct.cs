@@ -22,5 +22,21 @@
         {
             this.ProductPrice = this.ProductPrice - addPriceDiscount() + addPriceTax()- addUpcDiscount();
         }
+
+        internal void priceReport()
+        {
+            if (notOfferDiscount())
+            {
+                Console.WriteLine($"TAX = {ProductTaxPercentage * 100}%, no discount ");
+                getFinalPrice();
+                Console.WriteLine($"Final price = ${Math.Round(this.ProductPrice, 2)} ");
+            }
+            else
+            {
+                Console.WriteLine($"TAX = {ProductTaxPercentage * 100}%, Discount= {ProductDiscountPercentage * 100}%, UPC Discount= { Math.Round(upcDiscountPercentage *100,2)}% ");
+                getFinalPrice();
+                Console.WriteLine($"Final price = $ {Math.Round(this.ProductPrice, 2)}  with total ${Math.Round(this.ProductDiscountAmount +this.upcDiscountAmount, 2)} discount .");
+            }
+        }
     }
 }
