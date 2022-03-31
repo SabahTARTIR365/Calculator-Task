@@ -7,6 +7,10 @@
         private double productPrice;
         private double productTaxPercentage=0.2;
         private double productDiscountPercentage = 0.15;
+        private double productDiscountAmount;
+        private double productTaxAmount;
+
+        public double ProductPrice { get => productPrice; set => productPrice = value; }
 
         internal bool notOfferDiscount()
         {
@@ -30,8 +34,7 @@
             }
         }
 
-        private double productDiscountAmount;
-        private double productTaxAmount;
+
         public Product()
         {
         }
