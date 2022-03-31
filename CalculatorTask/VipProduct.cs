@@ -10,7 +10,11 @@
 
         }
 
-
+        internal double addUpcDiscount()
+        {
+            UpcDiscountAmount = this.ProductPrice * UpcDiscountPercentage;
+            return UpcDiscountAmount;
+        }
 
 
     }
