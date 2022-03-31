@@ -11,13 +11,11 @@
         {
 
         }
-
         internal double addUpcDiscount()
         {
             upcDiscountAmount = this.ProductPrice * upcDiscountPercentage;
             return upcDiscountAmount;
         }
-
         protected void getFinalPrice()
         {
             this.ProductPrice = this.ProductPrice - addPriceDiscount() + addPriceTax()- addUpcDiscount();
