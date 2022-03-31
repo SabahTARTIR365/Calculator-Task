@@ -8,9 +8,15 @@
         private double productTaxPercentage=0.2;
         private double productDiscountPercentage = 0.15;
 
+        internal bool notOfferDiscount()
+        {
+             
+           return productDiscountPercentage == 0.0;
+        }
+
         internal void priceReport()
         {
-           if (productDiscountPercentage == 0.0)
+           if (notOfferDiscount())
             {
                 Console.WriteLine($"TAX = {productTaxPercentage*100}%, no discount ");
                 getFinalPrice();
