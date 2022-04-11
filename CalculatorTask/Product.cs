@@ -9,8 +9,11 @@
         private double productDiscountPercentage = 0.15;
         private double productDiscountAmount;
         private double productTaxAmount;
-
+        private bool   discountBeforeTax = false;
         public double ProductPrice { get => productPrice; set => productPrice = value; }
+
+   
+
         public double ProductTaxPercentage { get => productTaxPercentage; set => productTaxPercentage = value; }
         public double ProductDiscountAmount { get => productDiscountAmount; set => productDiscountAmount = value; }
         public double ProductDiscountPercentage { get => productDiscountPercentage; set => productDiscountPercentage = value; }
@@ -19,7 +22,11 @@
         {
            return productDiscountPercentage == 0.0;
         }
-
+        internal void addPriceDiscount(double discount, bool beforTax)
+        {
+            this.productDiscountPercentage = discount;
+            this.discountBeforeTax = beforTax;
+        }
         internal void priceReport()
         {
            if (notOfferDiscount())
@@ -48,7 +55,7 @@
             this.productPrice = productPrice;
         }
 
-        internal double addPriceDiscount()
+        internal double getPriceDiscount()
         {
             if (this != null)
             {
@@ -58,11 +65,22 @@
         }
 
          protected void getFinalPrice()
-        { 
-            this.productPrice = this.productPrice - addPriceDiscount()+ addPriceTax();
+        {   
+            this.productPrice = discountBeforeTax? getPriceWithDiscountFirst() : getPriceWithTaxFirst();
+        }
+        internal double getPriceWithDiscountFirst()
+        {
+            this.productPrice = this.productPrice - getPriceDiscount();
+            this.productPrice= this.productPrice * this.productTaxPercentage+this.productPrice;
+
+            return this.productPrice;
+        }
+        internal double getPriceWithTaxFirst()
+        {
+            return this.productPrice - getPriceDiscount() + getPriceTax(); ;
         }
 
-        internal double addPriceTax()
+        internal double getPriceTax()
         {
            if (this  != null) 
             {

@@ -4,21 +4,26 @@
     {
         private double upcDiscountPercentage=0.07;
         private double upcDiscountAmount;
-
+        private bool   upcdiscountBeforeTax = false;
         public double UpcDiscountPercentage { get => upcDiscountPercentage; set => upcDiscountPercentage = value; }
 
         public VipProduct(string productName, int universalProductCode, double productPrice) : base(productName, universalProductCode, productPrice)
         {
 
         }
-        internal double addUpcDiscount()
+        internal void addPriceUpcDiscount(double discount, bool beforTax)
+        {
+            this.upcDiscountPercentage = discount;
+            this.upcdiscountBeforeTax = beforTax;
+        }
+    internal double getUpcDiscount()
         {
             upcDiscountAmount = this.ProductPrice * upcDiscountPercentage;
             return upcDiscountAmount;
         }
         protected void getFinalPrice()
-        {
-            this.ProductPrice = this.ProductPrice - addPriceDiscount() + addPriceTax()- addUpcDiscount();
+        { //start here 
+            this.ProductPrice = this.ProductPrice - getPriceDiscount() + getPriceTax()- getUpcDiscount();
         }
 
         internal void priceReport()
