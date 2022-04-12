@@ -8,17 +8,16 @@ namespace CalculatorTask
 {
     internal class Tax
     {
-        private double taxAmount;
-        private double taxPercentage = 0.2;
+        
+        private double taxPercentage;
         
 
         public Tax(double taxPercentage)
         {
-            this.taxPercentage = taxPercentage;
+            this.TaxPercentage = taxPercentage;
         }
 
-        public double ProductTaxAmount { get => taxAmount; set => taxAmount = value; }
-        public double ProductTaxPercentage { get => taxPercentage; set => taxPercentage = value; }
-
+     
+        public double TaxPercentage { get => taxPercentage; set => taxPercentage = value; }
     }
 }

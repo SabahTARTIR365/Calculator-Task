@@ -11,7 +11,7 @@
         {
 
         }
-        internal void addPriceUpcDiscount(double discount, bool beforTax)
+      /*  internal void addPriceUpcDiscount(double discount, bool beforTax)
         {
             this.upcDiscountPercentage = discount;
             this.upcdiscountBeforeTax = beforTax;
@@ -40,6 +40,6 @@
                 getFinalPrice();
                 Console.WriteLine($"Final price = $ {Math.Round(this.ProductPrice, 2)}  with total ${Math.Round(this.ProductDiscountAmount +this.upcDiscountAmount, 2)} discount .");
             }
-        }
+        }*/
     }
 }

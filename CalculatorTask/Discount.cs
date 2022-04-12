@@ -10,23 +10,23 @@ namespace CalculatorTask
     {  
        
         private double discountPercentage;
-        private double discountAmount;
-        private double v;
+        private bool   doDiscountBeforeApplyingTax=false;
+        private string discountType;
 
-        public Discount(double v)
+
+        public Discount(double discountPercentage, bool doDiscountBeforeApplyingTax, string discountType)
         {
-            this.v = v;
+            this.discountPercentage = discountPercentage;
+            this.doDiscountBeforeApplyingTax = doDiscountBeforeApplyingTax;
+            this.discountType = discountType;
         }
 
-        /* enum discountType
-{
-   normal,
-   upc
-};*/
 
-        public double ProductDiscountAmount { get => discountAmount; set => discountAmount = value; }
-        public double ProductDiscountPercentage { get => discountPercentage; set => discountPercentage = value; }
+
       
+        public double DiscountPercentage { get => discountPercentage; set => discountPercentage = value; }
+        public string DiscountType { get => discountType; set => discountType = value; }
+        public bool DoDiscountBeforeApplyingTax { get => doDiscountBeforeApplyingTax; set => doDiscountBeforeApplyingTax = value; }
 
         internal bool notOfferDiscount()
         {

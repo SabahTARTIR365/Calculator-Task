@@ -6,12 +6,19 @@ namespace CalculatorTask
         static void Main(string[] args)
         { 
             Product product = new Product("The Little Prince", 12345, 20.25);
-           // product.addPriceDiscount(0.15, false);
-           // product.priceReport();
+            Tax tax = new Tax(0.20);
+            List<Discount> Discounts = new List<Discount>();
+            Discount UniDiscount = new Discount(0.15, false,"universal");
+            Discount Upc = new Discount(0.07,true,"UPC");
 
-      
-                 
-         
+            Discounts.Add(Upc);
+            Discounts.Add(UniDiscount);
+            Calculator calculator = new Calculator(product,tax, Discounts);
+            double price =calculator.getFinalPrice();
+
+
+
+
 
         }
 
