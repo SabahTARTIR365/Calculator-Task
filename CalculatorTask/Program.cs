@@ -9,10 +9,7 @@ namespace CalculatorTask
            // product.addPriceDiscount(0.15, false);
            // product.priceReport();
 
-            VipProduct productt = new VipProduct("The Little Princes Tia", 10345, 22.25);
-           // productt.addPriceDiscount(0.15, true);
-            productt.addPriceUpcDiscount(0.15, false);
-            productt.priceReport(); 
+      
                  
          
 
