@@ -10,9 +10,10 @@ namespace CalculatorTask
             List<Discount> Discounts = new List<Discount>();
             Discount UniDiscount = new Discount(0.15, false,"universal");
             Discount Upc = new Discount(0.07,true,"UPC");
-
             Discounts.Add(Upc);
             Discounts.Add(UniDiscount);
+            Cost cost = new Cost(2.25, true);
+
             Calculator calculator = new Calculator(product,tax, Discounts);
             double price =calculator.getFinalPrice();
 
