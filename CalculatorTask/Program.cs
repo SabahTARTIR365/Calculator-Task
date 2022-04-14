@@ -15,8 +15,10 @@ namespace CalculatorTask
             Cost packaging = new Cost(0.01, true,"Packaging cost");
             Cost transport = new Cost(2.2,false, "Transport cost");
             List <Cost> costs = new List<Cost>();
+
             costs.Add(packaging);
             costs.Add(transport);
+
             Calculator calculator = new Calculator(product,tax, Discounts,costs);
             double price =calculator.getFinalPrice();
 
