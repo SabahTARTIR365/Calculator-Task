@@ -5,6 +5,7 @@
         private Product _product;
         private Tax _tax;
         private List <Discount> _discounts;
+        private List<Cost> _costs;
 
         public double countAmountBeforeTax=0.0;
         public double countAmountAfterTax=0.0;
@@ -13,15 +14,17 @@
         internal Product Product { get => _product; set => _product = value; }
         internal Tax Tax { get => _tax; set => _tax = value; }
         internal List<Discount> Discounts { get => _discounts; set => _discounts = value; }
+        internal List<Cost> Costs { get => _costs; set => _costs = value; }
 
         public Calculator()
         {
         }
-        public Calculator(Product product, Tax tax, List <Discount> discount)
+        public Calculator(Product product, Tax tax, List <Discount> discount, List<Cost> _costs)
         {
             this.Product = product;
             this.Tax = tax;
             this.Discounts = discount;
+            this._costs = _costs;
         }
 
 

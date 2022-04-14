@@ -3,23 +3,21 @@
     internal class Cost
     {
         private double costValue;
-        private double costpercentage;
-        private bool   iscostFromPrice=false; 
+  
+        private bool   iscostPercentage=false;
+        private string costType;
 
-        public Cost(double costValue)
+        public Cost(double costValue,bool iscostPercentage, string costType)
         {
             this.CostValue = costValue;
+            this.CostType = costType;
+            this.IscostPercentage = iscostPercentage;
         }
 
-        public Cost(double costpercentage, bool costFromPrice) 
-        {
-            this.Costpercentage = costpercentage;
-            this.CostFromPrice = costFromPrice;
-
-        }
 
         public double CostValue { get => costValue; set => costValue = value; }
-        public double Costpercentage { get => costpercentage; set => costpercentage = value; }
-        public bool CostFromPrice { get => iscostFromPrice; set => iscostFromPrice = value; }
+      
+        public string CostType { get => costType; set => costType = value; }
+        public bool IscostPercentage { get => iscostPercentage; set => iscostPercentage = value; }
     }
 }
