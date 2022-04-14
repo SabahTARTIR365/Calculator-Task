@@ -46,13 +46,13 @@
             {
                 if (Discounts[i].DoDiscountBeforeApplyingTax)
                 {
-                    this.countAmountBeforeTax = this.countAmountBeforeTax + getDiscountAmount(Discounts[i].DiscountPercentage);
+                    this.countAmountBeforeTax = this.countAmountBeforeTax + getDiscountAmount(Discounts[i].DiscountPercentage, Discounts[i].DiscountType);
                     this.Product.ProductPrice = this.Product.ProductPrice - this.countAmountBeforeTax;
 
                 }
                 else
                 {
-                    this.countAmountAfterTax = this.countAmountAfterTax + getDiscountAmount(Discounts[i].DiscountPercentage);
+                    this.countAmountAfterTax = this.countAmountAfterTax + getDiscountAmount(Discounts[i].DiscountPercentage, Discounts[i].DiscountType);
                 }
             }
         }
@@ -62,18 +62,18 @@
             Console.WriteLine($"TAX = {Tax.TaxPercentage * 100}%,");
             for (int i = 0; i < Discounts.Count; i++)
             {
-                Console.WriteLine($"Discount {Discounts[i].DiscountType}= { Math.Round(Discounts[i].DiscountPercentage * 100, 2)}% ");
+                Console.WriteLine($"{Discounts[i].DiscountType} Discount = { Math.Round(Discounts[i].DiscountPercentage * 100, 2)}% for UPC ={Product.UniversalProductCode} ");
             }
         }
 
-        private double getDiscountAmount(double discountPercentage)
+        private double getDiscountAmount(double discountPercentage, string discountType )
         {
             double amount = 0; 
             if (this != null)
             {
                 amount = Math.Round(this.Product.ProductPrice * discountPercentage,2);
             }
-            Console.WriteLine($"discount amount = {amount}");
+            Console.WriteLine($"{discountType } Discount amount = ${this.Product.ProductPrice}* { Math.Round(discountPercentage * 100, 2)}%= ${amount},");
             return amount;
 
 
