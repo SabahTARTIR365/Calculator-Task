@@ -12,7 +12,7 @@ namespace CalculatorTask
         private double discountPercentage;
         private bool   doDiscountBeforeApplyingTax=false;
         private string discountType;
-
+    
 
         public Discount(double discountPercentage, bool doDiscountBeforeApplyingTax, string discountType)
         {
