@@ -39,7 +39,9 @@
 
             if (isMultiplicativeDiscount()) {
                 //YES SIR HERE
-                
+                getMultiplicativeDiscount();
+
+
             }
             else
             {
@@ -62,26 +64,37 @@
             double initialDiscount = 0.0;
             double discountBeforTax = 0.0;
             double discountAfterTax = 0.0;
-            initialDiscount = initialDiscount + getDiscountAmount(DiscountManager.Discounts[0].DiscountPercentage, DiscountManager.Discounts[0].DiscountType);
-                
+            double temporareyPrice = 0.0;
+            initialDiscount = initialDiscount + getDiscountAmount(price,DiscountManager.Discounts[0].DiscountPercentage, DiscountManager.Discounts[0].DiscountType);
+            price = DiscountManager.Discounts[0].DoDiscountBeforeApplyingTax ? price - initialDiscount : price;
+
+
             for (int i = 1; i < this.DiscountManager.Discounts.Count; i++)
                 {
                     if (DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
                     {
-                   
-                    discountBeforTax = discountBeforTax + getDiscountAmount(DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
-                      price =price- discountBeforTax;
+                    temporareyPrice = Math.Round(price  - discountBeforTax - discountAfterTax,2);
+                    discountBeforTax = discountBeforTax+getDiscountAmount(temporareyPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
+                    price = Math.Round(price - discountBeforTax,2);
 
-                    /* if (i == 0) { dis = dis + getDiscountAmount(DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType); }
-                     else { dis = (this.Product.ProductPrice - dis + getTaxAmount()) * DiscountManager.Discounts[i].DiscountPercentage; }
-                   */
-                    //ESMATE DISCOUNT FOR TAX SCENARIO
+
                     }
+                   else 
+                   {
+                    temporareyPrice = Math.Round(price - discountAfterTax,2);
+                    discountAfterTax = discountAfterTax+getDiscountAmount( temporareyPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
 
-                }
+                   }
 
+            }
 
-            Console.WriteLine($"Discount=${total_Discount}");
+            total_Discount= initialDiscount+discountBeforTax + discountAfterTax;
+            double tax = getTaxAmount(price);
+            double purePrice= Math.Round(Product.ProductPrice+tax- total_Discount+ getTotalCosts(), 2);
+            Console.WriteLine($"discountAfterTax=${discountAfterTax}");
+            Console.WriteLine($"discountBeforTax=${discountBeforTax}");
+            Console.WriteLine($"Total Discount=${total_Discount}");
+            Console.WriteLine($"Cost (pure price)= ${purePrice}");
         }
 
         private double getTotalCosts()
@@ -113,13 +126,13 @@
                                 
                    if (DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
                    {
-                    this.countAmountBeforeTax = this.countAmountBeforeTax + getDiscountAmount(DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
-                    this.Product.ProductPrice = this.Product.ProductPrice - this.countAmountBeforeTax;
+                    this.countAmountBeforeTax = this.countAmountBeforeTax + getDiscountAmount(this.Product.ProductPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
+                    //this.Product.ProductPrice = this.Product.ProductPrice - this.countAmountBeforeTax;
 
                    }
                    else
                    {
-                    this.countAmountAfterTax = this.countAmountAfterTax + getDiscountAmount(DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
+                    this.countAmountAfterTax = this.countAmountAfterTax + getDiscountAmount(this.Product.ProductPrice,DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                    }
 
                 
@@ -161,14 +174,14 @@
             }
         }
 
-        private double getDiscountAmount(double discountPercentage, string discountType )
+        private double getDiscountAmount(double price,double discountPercentage, string discountType )
         {
             double amount = 0; 
             if (this != null)
             {
-                amount = Math.Round(this.Product.ProductPrice * discountPercentage,2);
+                amount = Math.Round(price * discountPercentage,2);
             }
-            Console.WriteLine($"{discountType } Discount amount = ${this.Product.ProductPrice}* { Math.Round(discountPercentage * 100, 2)}%= ${amount},");
+            Console.WriteLine($"{discountType } Discount amount = ${price}* { Math.Round(discountPercentage * 100, 2)}%= ${amount},");
             return amount;
 
 
