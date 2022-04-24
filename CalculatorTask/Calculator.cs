@@ -7,10 +7,6 @@
         private DiscountManager _discountManager;
         private List<Cost> _costs;
 
-        public double countAmountBeforeTax=0.0;
-        public double countAmountAfterTax=0.0;
-
-
         internal Product Product { get => _product; set => _product = value; }
         internal Tax Tax { get => _tax; set => _tax = value; }
         internal List<Cost> Costs { get => _costs; set => _costs = value; }
@@ -30,9 +26,7 @@
 
         internal void getFinalPrice()
         {
-          
             reportForProductInput();
-
             if (isMultiplicativeDiscount()) 
             { 
                 getMultiplicativeDiscount(); 
@@ -41,7 +35,6 @@
             {
                 getAdditiveDiscount();
             }
-          
         }
 
         private void getAdditiveDiscount()
@@ -52,15 +45,15 @@
             double total_Discount = 0.0;
             discountBeforTax = getDiscountBeforeTax();
             price = Math.Round(price - discountBeforTax, 2);
+
             discountAfterTax = getDiscountAfterTax(price);
             total_Discount = Math.Round(discountBeforTax + discountAfterTax, 2);
-           // setFinalDiscount();
-            //Console.WriteLine("==========================================================");
-           // Console.WriteLine($"Cost (pure price)= ${price}");
-            price = Math.Round(price - countAmountBeforeTax, 2);
-            price = Math.Round(price + getTaxAmount(price) - countAmountAfterTax + getTotalCosts(), 2);
-
-            Console.WriteLine($"TOTAL={price}");
+            total_Discount = total_Discount > getTotalCap() ? getTotalCap() : total_Discount;
+            Console.WriteLine("==========================================================");
+            Console.WriteLine($"Cost (pure price)= ${this.Product.ProductPrice}");
+            Console.WriteLine($"Discount=${total_Discount}");
+            price = Math.Round(this.Product.ProductPrice + getTaxAmount(price) - total_Discount + getTotalCosts(), 2);
+            Console.WriteLine($"TOTAL=${price}");
         }
 
         private double getDiscountAfterTax(double price)
@@ -69,13 +62,11 @@
 
             for (int i = 0; i < DiscountManager.Discounts.Count; i++)
             {
-
                 if (!DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
                 {
                     discount = discount + getDiscountAmount(price, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                 }
             }
-
             return discount;
         }
 
