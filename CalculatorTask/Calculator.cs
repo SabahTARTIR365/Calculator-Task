@@ -141,13 +141,11 @@
                 }
             }
             return totalCostAmount;
-           
         }
 
         private double getTotalCap()
         {
             double totalCapAmount = 0.0;
-
             totalCapAmount = DiscountManager.DiscontCap.IsCapPersentage?
                              Math.Round(this.Product.ProductPrice * DiscountManager.DiscontCap.Value, 2)
                             :Math.Round(DiscountManager.DiscontCap.Value, 2); 
@@ -166,7 +164,6 @@
             Console.WriteLine($"TAX = {Tax.TaxPercentage * 100}%,");
             reportForCostsInputs();
             reportForDiscountsInputs();
-          
         }
 
         private void reportForDiscountsInputs()
