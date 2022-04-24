@@ -28,28 +28,32 @@
         }
 
 
-        internal double getFinalPrice()
+        internal void getFinalPrice()
         {
-            
-            double price = this.Product.ProductPrice;
+          
             reportForProductInput();
 
-            if (isMultiplicativeDiscount()) {
-                //YES SIR HERE
-                getMultiplicativeDiscount();
+            if (isMultiplicativeDiscount()) 
+            { 
+                getMultiplicativeDiscount(); 
             }
             else
             {
-                setFinalDiscount();
-                Console.WriteLine("==========================================================");
-                Console.WriteLine($"Cost (pure price)= ${price}");
-                price = Math.Round(price - countAmountBeforeTax, 2);
-                price = Math.Round(price + getTaxAmount(price) - countAmountAfterTax + getTotalCosts(), 2);
-
-                Console.WriteLine($"TOTAL={price}");
-                
+                getAdditiveDiscount();
             }
-            return price;
+          
+        }
+
+        private void getAdditiveDiscount()
+        {
+            double price = this.Product.ProductPrice;
+            setFinalDiscount();
+            Console.WriteLine("==========================================================");
+            Console.WriteLine($"Cost (pure price)= ${price}");
+            price = Math.Round(price - countAmountBeforeTax, 2);
+            price = Math.Round(price + getTaxAmount(price) - countAmountAfterTax + getTotalCosts(), 2);
+
+            Console.WriteLine($"TOTAL={price}");
         }
 
         private void getMultiplicativeDiscount()
@@ -130,7 +134,6 @@
                    {
                     this.countAmountBeforeTax = this.countAmountBeforeTax + getDiscountAmount(this.Product.ProductPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                     //this.Product.ProductPrice = this.Product.ProductPrice - this.countAmountBeforeTax;
-
                    }
                    else
                    {
