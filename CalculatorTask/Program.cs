@@ -8,8 +8,7 @@ namespace CalculatorTask
         static void Main(string[] args)
         {
       
-           Price price = new Price(20.25, "USD");
-
+            Price price = new Price(20.25, "USD");
             Product product = new Product("The Little Prince", 12345, price);
             Tax tax = new Tax(0.21);
             List<Discount> Discounts = new List<Discount>();
