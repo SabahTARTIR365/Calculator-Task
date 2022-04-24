@@ -19,13 +19,13 @@ namespace CalculatorTask
             Discounts.Add(Upc);
             //Discounts.Add(Upc1);
             Discounts.Add(UniDiscount);
-            Cost packaging = new Cost(0.01, true, "Packaging cost");
-            Cost transport = new Cost(2.2,false, "Transport cost");
+            Cost packaging = new Cost(0.03, true, "Packaging cost");
+            //Cost transport = new Cost(2.2,false, "Transport cost");
             List <Cost> costs = new List<Cost>();
-            Cap discontCap = new Cap(0.20,true);
-            DiscountManager discountManager = new DiscountManager(Discounts, false, discontCap);
+            Cap discontCap = new Cap(0.30,true);
+            DiscountManager discountManager = new DiscountManager(Discounts, true, discontCap);
             costs.Add(packaging);
-            costs.Add(transport);
+           // costs.Add(transport);
 
             Calculator calculator = new Calculator(product,tax, discountManager, costs);
 

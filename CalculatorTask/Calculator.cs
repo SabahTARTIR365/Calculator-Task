@@ -44,7 +44,7 @@
             double discountAfterTax = 0.0;
             double total_Discount = 0.0;
             discountBeforTax = getDiscountBeforeTax();
-            price = Math.Round(price - discountBeforTax, 2);
+            price = Math.Round(price - discountBeforTax, 4);
 
             discountAfterTax = getDiscountAfterTax(price);
             total_Discount = Math.Round(discountBeforTax + discountAfterTax, 2);
@@ -98,7 +98,7 @@
             {
                 if (DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
                 {
-                    temporareyPrice = Math.Round(price - discountBeforTax, 2);
+                    temporareyPrice = Math.Round(price - discountBeforTax, 4);
                     discountBeforTax = discountBeforTax + getDiscountAmount(temporareyPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                     price = Math.Round(price - discountBeforTax, 2);
                 }
@@ -112,7 +112,7 @@
                 }
             }
 
-            total_Discount= discountBeforTax + discountAfterTax;
+            total_Discount = Math.Round(discountBeforTax + discountAfterTax,2);
             total_Discount = total_Discount > getTotalCap() ? getTotalCap() : total_Discount;
             Console.WriteLine("==========================================================");
             double tax = getTaxAmount(price);
@@ -130,9 +130,9 @@
             foreach (Cost cost in this.Costs)
             { if (cost.IscostPercentage)
                 {
-                    costFromPricePercentage  = Math.Round(this.Product.ProductPrice.PriceValue * cost.CostValue,2);
+                    costFromPricePercentage  = Math.Round(this.Product.ProductPrice.PriceValue * cost.CostValue,4);
                     totalCostAmount = Math.Round(totalCostAmount + costFromPricePercentage, 2);
-                    Console.WriteLine($"{cost.CostType}= {costFromPricePercentage} {Product.ProductPrice.CurrencyType}");
+                    Console.WriteLine($"{cost.CostType}= {Math.Round(costFromPricePercentage,2)} {Product.ProductPrice.CurrencyType}");
                 }
                 else
                 {
@@ -190,7 +190,7 @@
             double amount = 0; 
             if (this != null)
             {
-                amount = Math.Round(price * discountPercentage,2);
+                amount = Math.Round(price * discountPercentage,4);
             }
             Console.WriteLine($"{discountType } Discount amount = {price} {Product.ProductPrice.CurrencyType} * { Math.Round(discountPercentage * 100, 2)}%= {amount}{Product.ProductPrice.CurrencyType},");
             return amount;
