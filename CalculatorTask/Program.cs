@@ -17,7 +17,8 @@ namespace CalculatorTask
             Cost packaging = new Cost(0.01, true,"Packaging cost");
             Cost transport = new Cost(2.2,false, "Transport cost");
             List <Cost> costs = new List<Cost>();
-            DiscountManager discountManager = new DiscountManager(Discounts, true);
+            Cap discontCap = new Cap(2.2,true);
+            DiscountManager discountManager = new DiscountManager(Discounts, true, discontCap);
             costs.Add(packaging);
             costs.Add(transport);
 
