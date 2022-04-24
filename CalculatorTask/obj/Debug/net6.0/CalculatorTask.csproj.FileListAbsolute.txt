@@ -13,3 +13,5 @@ C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.
 C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.pdb
 C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.genruntimeconfig.cache
 C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\ref\CalculatorTask.dll
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\bin\Debug\net6.0\Bogus.dll
+C:\Users\Sabah Tartir\source\repos\CalculatorTask\CalculatorTask\obj\Debug\net6.0\CalculatorTask.csproj.CopyComplete

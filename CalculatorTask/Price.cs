@@ -2,13 +2,16 @@
 {
     internal class Price
     {
-        private double v;
-        private object uSD;
+        private double priceValue;
+        private string currencyType;
 
-        public Price(double v, object uSD)
+        public Price(double price, string currencyType)
         {
-            this.v = v;
-            this.uSD = uSD;
+            this.PriceValue = price;
+            this.CurrencyType = currencyType;
         }
+
+        public double PriceValue { get => priceValue; set => priceValue = value; }
+        public string CurrencyType { get => currencyType; set => currencyType = value; }
     }
 }
