@@ -47,13 +47,52 @@
         private void getAdditiveDiscount()
         {
             double price = this.Product.ProductPrice;
-            setFinalDiscount();
-            Console.WriteLine("==========================================================");
-            Console.WriteLine($"Cost (pure price)= ${price}");
+            double discountBeforTax = 0.0;
+            double discountAfterTax = 0.0;
+            double total_Discount = 0.0;
+            discountBeforTax = getDiscountBeforeTax();
+            price = Math.Round(price - discountBeforTax, 2);
+            discountAfterTax = getDiscountAfterTax(price);
+            total_Discount = Math.Round(discountBeforTax + discountAfterTax, 2);
+           // setFinalDiscount();
+            //Console.WriteLine("==========================================================");
+           // Console.WriteLine($"Cost (pure price)= ${price}");
             price = Math.Round(price - countAmountBeforeTax, 2);
             price = Math.Round(price + getTaxAmount(price) - countAmountAfterTax + getTotalCosts(), 2);
 
             Console.WriteLine($"TOTAL={price}");
+        }
+
+        private double getDiscountAfterTax(double price)
+        {
+            double discount = 0.0;
+
+            for (int i = 0; i < DiscountManager.Discounts.Count; i++)
+            {
+
+                if (!DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
+                {
+                    discount = discount + getDiscountAmount(price, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
+                }
+            }
+
+            return discount;
+        }
+
+        private double getDiscountBeforeTax()
+        {
+            double discount = 0.0;
+
+            for (int i = 0; i < DiscountManager.Discounts.Count; i++)
+            {
+
+                if (DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
+                {
+                    discount= discount + getDiscountAmount(this.Product.ProductPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
+                    
+                }
+            }
+                return discount;
         }
 
         private void getMultiplicativeDiscount()
@@ -124,25 +163,7 @@
             Console.WriteLine($"Cap= ${totalCapAmount}");
             return totalCapAmount;
         }
-        private void setFinalDiscount()
-        {
-            for (int i = 0; i < DiscountManager.Discounts.Count; i++)
-            {
-             
-                                
-                   if (DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
-                   {
-                    this.countAmountBeforeTax = this.countAmountBeforeTax + getDiscountAmount(this.Product.ProductPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
-                    //this.Product.ProductPrice = this.Product.ProductPrice - this.countAmountBeforeTax;
-                   }
-                   else
-                   {
-                    this.countAmountAfterTax = this.countAmountAfterTax + getDiscountAmount(this.Product.ProductPrice,DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
-                   }
 
-
-            }
-        }
 
         private bool isMultiplicativeDiscount()
         {
