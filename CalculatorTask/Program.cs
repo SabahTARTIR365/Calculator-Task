@@ -9,8 +9,10 @@ namespace CalculatorTask
             Tax tax = new Tax(0.21);
             List<Discount> Discounts = new List<Discount>();
             Discount Upc = new Discount(0.07,false,"UPC");
-            Discount UniDiscount = new Discount(0.15, false, "universal");
+            //Discount Upc1 = new Discount(0.07, true, "UPC test1");
+            Discount UniDiscount = new Discount(0.15, true, "universal");
             Discounts.Add(Upc);
+            //Discounts.Add(Upc1);
             Discounts.Add(UniDiscount);
             Cost packaging = new Cost(0.01, true,"Packaging cost");
             Cost transport = new Cost(2.2,false, "Transport cost");
