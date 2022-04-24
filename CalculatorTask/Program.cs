@@ -28,6 +28,7 @@ namespace CalculatorTask
             costs.Add(transport);
 
             Calculator calculator = new Calculator(product,tax, discountManager, costs);
+
             calculator.getFinalPrice();
 
 
