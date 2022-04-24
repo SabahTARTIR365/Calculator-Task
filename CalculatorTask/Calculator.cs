@@ -4,7 +4,6 @@
     {
         private Product _product;
         private Tax _tax;
-        //private List <Discount> _discounts;
         private DiscountManager _discountManager;
         private List<Cost> _costs;
 
@@ -14,7 +13,6 @@
 
         internal Product Product { get => _product; set => _product = value; }
         internal Tax Tax { get => _tax; set => _tax = value; }
-        //internal List<Discount> Discounts { get => _discounts; set => _discounts = value; }
         internal List<Cost> Costs { get => _costs; set => _costs = value; }
         internal DiscountManager DiscountManager { get => _discountManager; set => _discountManager = value; }
 
@@ -25,7 +23,6 @@
         {
             this.Product = product;
             this.Tax = tax;
-           // this.Discounts = discount;
             this.DiscountManager =discountManager;
             this._costs = _costs;
         }
@@ -82,6 +79,7 @@
             }
 
             total_Discount= discountBeforTax + discountAfterTax;
+            total_Discount = total_Discount > getTotalCap() ? getTotalCap() : total_Discount;
             Console.WriteLine("==========================================================");
             double tax = getTaxAmount(price);
             double purePrice= Math.Round(Product.ProductPrice+tax- total_Discount+ getTotalCosts(), 2);
@@ -112,6 +110,16 @@
            
         }
 
+        private double getTotalCap()
+        {
+            double totalCapAmount = 0.0;
+
+            totalCapAmount = DiscountManager.DiscontCap.IsCapPersentage?
+                             Math.Round(this.Product.ProductPrice * DiscountManager.DiscontCap.Value, 2)
+                            :Math.Round(DiscountManager.DiscontCap.Value, 2); 
+            Console.WriteLine($"Cap= ${totalCapAmount}");
+            return totalCapAmount;
+        }
         private void setFinalDiscount()
         {
             for (int i = 0; i < DiscountManager.Discounts.Count; i++)
@@ -128,9 +136,6 @@
                    {
                     this.countAmountAfterTax = this.countAmountAfterTax + getDiscountAmount(this.Product.ProductPrice,DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                    }
-
-                
-              
 
 
             }
