@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "TiImT1LrDXMDYAi0xUW4QEFN1nMMZUIlqzCGc2XTSBYoaufbE1GEH75t7L4XlFRSqU+/pkAVPyc0NQ+bMNfoBA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sabah Tartir\\source\\repos\\CalculatorTask\\CalculatorTask\\CalculatorTask.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sabah Tartir\\.nuget\\packages\\bogus\\34.0.2\\bogus.34.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
