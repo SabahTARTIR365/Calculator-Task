@@ -40,8 +40,6 @@
             if (isMultiplicativeDiscount()) {
                 //YES SIR HERE
                 getMultiplicativeDiscount();
-
-
             }
             else
             {
@@ -61,35 +59,32 @@
         {
             double total_Discount=0.0;
             double price = Product.ProductPrice;
-            double initialDiscount = 0.0;
             double discountBeforTax = 0.0;
             double discountAfterTax = 0.0;
             double temporareyPrice = 0.0;
-            initialDiscount = initialDiscount + getDiscountAmount(price,DiscountManager.Discounts[0].DiscountPercentage, DiscountManager.Discounts[0].DiscountType);
-            price = DiscountManager.Discounts[0].DoDiscountBeforeApplyingTax ? price - initialDiscount : price;
 
-            for (int i = 1; i < this.DiscountManager.Discounts.Count; i++)
+            for (int i = 0; i < this.DiscountManager.Discounts.Count; i++)
             {
                 if (DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
                 {
-                    temporareyPrice = Math.Round(price - discountBeforTax - discountAfterTax, 2);
+                    temporareyPrice = Math.Round(price - discountBeforTax, 2);
                     discountBeforTax = discountBeforTax + getDiscountAmount(temporareyPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                     price = Math.Round(price - discountBeforTax, 2);
                 }
             }
-            for (int i = 1; i < this.DiscountManager.Discounts.Count; i++)
+            for (int i = 0; i < this.DiscountManager.Discounts.Count; i++)
                 {
                 if (!DiscountManager.Discounts[i].DoDiscountBeforeApplyingTax)
                 {
-                    temporareyPrice = Math.Round(price - discountAfterTax, 2);
+                    temporareyPrice = Math.Round(price - discountAfterTax, 2);// i didn't subrtract after here becouse it's already subtracted from price
                     discountAfterTax = discountAfterTax + getDiscountAmount(temporareyPrice, DiscountManager.Discounts[i].DiscountPercentage, DiscountManager.Discounts[i].DiscountType);
                 }
             }
 
-            total_Discount= initialDiscount+discountBeforTax + discountAfterTax;
+            total_Discount= discountBeforTax + discountAfterTax;
+            Console.WriteLine("==========================================================");
             double tax = getTaxAmount(price);
             double purePrice= Math.Round(Product.ProductPrice+tax- total_Discount+ getTotalCosts(), 2);
-            Console.WriteLine($"initial Discount=${initialDiscount}");
             Console.WriteLine($"discount After Tax=${discountAfterTax}");
             Console.WriteLine($"discount Before Tax=${discountBeforTax}");
             Console.WriteLine($"Total Discount=${total_Discount}");
